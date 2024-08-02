@@ -1,0 +1,38 @@
+from pyCuentaBanca.CuentaBancaria import CuentaBancaria
+from pyCuentaBanca.persona import Persona
+from datetime import date
+
+
+p1 = Persona(Nombre='Pepe', Apellidos='Rodríguez', DNI='12345678G', FechaNacimiento=date(year=2002, month=5, day=11))
+p2 = Persona(Nombre='Charls', Apellidos='Brown', DNI='34356787T', FechaNacimiento=date(year=2009, month=2, day=1))
+p3 = Persona(Nombre='Ivan', Apellidos='Tal', DNI='87654321F', FechaNacimiento=date(year=1980, month=8, day=12))
+print(f'p1 Edad: {p1.edad()}')
+print(f'p2 Edad: {p2.edad()}')
+print(f'p3 Edad: {p3.edad()}')
+cuenta1 = CuentaBancaria(persona=p1)
+cuenta2 = CuentaBancaria(persona=p2)
+cuenta3 = CuentaBancaria(persona=p3)
+print(f'IBAN Cuenta1: {cuenta1.iban}')
+print(f'IBAN Cuenta2: {cuenta2.iban}')
+print(f'IBAN Cuenta3: {cuenta3.iban}')
+print(f'Comisión Cuenta1: {cuenta1.comision}')
+print(f'Comisión Cuenta2: {cuenta2.comision}')
+print(f'Comisión Cuenta3: {cuenta3.comision}')
+cuenta1.ingreso(1000)
+cuenta2.ingreso(1000)
+cuenta3.ingreso(1000)
+print(f'Saldo Cuenta1: {cuenta1.saldo}')
+print(f'Saldo Cuenta2: {cuenta2.saldo}')
+print(f'Saldo Cuenta3: {cuenta3.saldo}')
+cuenta1.traspaso(c1=cuenta2,cantidad=500)
+print('Traspaso de Cuenta1 a Cuenta2 de 500€')
+print(f'Saldo Cuenta1: {cuenta1.saldo}')
+print(f'Saldo Cuenta2: {cuenta2.saldo}')
+cuenta2.traspaso(c1=cuenta3,cantidad=1500)
+print('Traspaso de Cuenta2 a Cuenta3 de 1500€')
+print(f'Saldo Cuenta1: {cuenta1.saldo}')
+print(f'Saldo Cuenta2: {cuenta2.saldo}')
+print(f'Saldo Cuenta3: {cuenta3.saldo}')
+
+#errorP1 = Persona(Nombre=11, Apellidos='Nose', DNI='54343119T', FechaNacimiento=date(year=2022, month=1, day=1))
+#errorP2 = Persona(Nombre=44.3, Apellidos=88, DNI='9887S', FechaNacimiento='Never')
