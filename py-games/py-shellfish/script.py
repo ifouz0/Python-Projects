@@ -13,7 +13,7 @@ loses_games = 0                 # Cantidad de partidas perdidas por el participa
 current_cube = 0                # Cubo en el que se encuentra la bola
 selected_cube = 0               # Cubo seleccionado por el participante
 
-os.system("cls")
+os.system("clear")
 
 print("*" * 150)
 print("*" * 150)
@@ -117,12 +117,13 @@ while play_game:
     if current_quantity == 0 :
         print(f"\n\n----->Lo siento mucho {competitor_name} te has quedado sin dinero!!!!!!!!. Debes abandonar la mesa de juego.")
         play_game = False
+        exit()
 
     
-    finish = input(F"¿Deseas abandonar la partida {competitor_name}? (S/N) ")
+    finish = input(f"¿Deseas abandonar la partida {competitor_name}? (S/N) ")
     if (finish.upper() == "S"): play_game = False
     
-    os.system("cls")
+    os.system("clear")
 
 else:
     print("-" * 150)

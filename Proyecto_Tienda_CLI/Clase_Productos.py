@@ -30,3 +30,5 @@ class Producto:
         self.descripcion = descripcion
         self.precio = precio
         return self
+    def precio(self) -> float:
+        return self.precio
