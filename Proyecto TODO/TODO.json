@@ -1,0 +1,29 @@
+[
+    {
+        "nombre": "kk",
+        "estado": "Nuevo",
+        "tareas": [
+            {
+                "nombre": "Sacar Od\u00edn a hacer CACA.",
+                "fecha_inicio": "2025-02-22",
+                "fecha_fin": "2025-02-23"
+            }
+        ]
+    },
+    {
+        "nombre": "kk",
+        "estado": "Nuevo",
+        "tareas": []
+    },
+    {
+        "nombre": "Comprar",
+        "estado": "En progreso",
+        "tareas": [
+            {
+                "nombre": "Ir al Supermercado",
+                "fecha_inicio": "2025-02-15",
+                "fecha_fin": "2025-02-25"
+            }
+        ]
+    }
+]
