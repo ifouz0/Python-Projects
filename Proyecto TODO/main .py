@@ -27,7 +27,9 @@ def menu_crear_proyecto(gestion):
     print ("Proyecto creado con éxito!")
     print ("-"*50)
     print ("")
-    menu_agregar_tarea_proyecto(gestion)
+    opcion = input ("Quieres agregar una tarea a este proyecto? (S/N): ")
+    menu_agregar_tarea_proyecto(gestion) if opcion == "S" else None
+    return
     
 def menu_modificar_proyecto(gestion):
     print ("-"*50)
