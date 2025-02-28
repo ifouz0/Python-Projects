@@ -20,7 +20,7 @@ from pylib.utilities import sysutils
 
 
 def main():
-    """Python DocString: Main Function or Method"""
+    """Python DocString: Test the library"""
 
     
     print("-" * 150)
