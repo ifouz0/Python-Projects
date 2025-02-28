@@ -2,7 +2,7 @@ class Alumno:
     '''Clase que representa a un alumno'''
     nombre: str
     edad: int
-    calificacion: int|float
+    calificacion: float
 
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -19,15 +19,19 @@ class Alumno:
         return self._edad
     
     @property
-    def calificacion(self) -> int|float:
+    def calificacion(self) -> float:
         return self._calificacion
     
+#Metodos
 
     def __str__(self):
         return f'Alumno: {self.nombre}, Edad: {self.edad}, Grado: {self.grado}'
     
     def calificar(self, grado):
-        self.calificacion = grado
+        self.calificacion = round(self.calificacion, 2)
+
+
+
 
     def es_mayor(self):
         return self.edad >= 18
@@ -42,11 +46,24 @@ class Aula:
     capacidad: int
     profesor: str
     alumnos: list[Alumno]
+
     def __init__(self, nombre, capacidad, profesor):
         self.nombre = nombre
         self.capacidad = capacidad
         self.alumnos = []
         self.profesor = profesor
+#Propiedades
+    @property
+    def nombre(self) -> str:
+        return self._nombre
+    @property
+    def capacidad(self) -> int:
+        return self._capacidad
+    @property
+    def profesor(self) -> str:
+        return self._profesor
+
+#Metodos
 
     def agregar_alumno(self, alumno):
         if len(self.alumnos) < self.capacidad:
@@ -70,8 +87,14 @@ class Aula:
         return None
     
     def listar_alumnos(self):
+        print(f'Alumnos en el aula {self.nombre}:')
         for alumno in self.alumnos:
-            print(alumno)
+            print("Nombre: ", alumno.nombre)
+            print("Edad: ", alumno.edad)
+            print("Grado: ", alumno.grado)
+
+    def num_alumnos(self):
+        return len(self.alumnos)
     
     def listar_aprobados(self):
         for alumno in self.alumnos:
@@ -98,3 +121,64 @@ class Escuela:
 
     def __str__(self):
         return f'Escuela: {self.nombre}, Aulas: {len(self.aulas)}'
+    
+    def listar_profesores_num_alumnos(self):
+        profesores = {}
+        for aula in self.aulas:
+            if aula.profesor in profesores:
+                profesores[aula.profesor] += aula.num_alumnos()
+            else:
+                profesores[aula.profesor] = aula.num_alumnos()
+        print("Profesores y número de alumnos:")
+        for profesor, num_alumnos in profesores.items():
+            print(f'{profesor}: {num_alumnos}')
+    
+    def listar_aprobados(self):
+        print("Alumnos aprobados:")
+        for aula in self.aulas:
+            aula.listar_aprobados()
+    def listar_ocupacion(self):
+        for aula in self.aulas:
+            print(f'Ocupación del aula {aula.nombre}: {aula.ocupacion()}%02')
+    
+    def listar_datos_escuela(self):
+        print(f'Escuela: {self.nombre}')
+        print(f'Dirección: {self.direccion}')
+        print(f'Teléfono: {self.telefono}')
+        print(f'Director: {self.director}')
+        print(f'Aulas: {len(self.aulas)}')
+        print(" Nombre de las aulas y capacidad de alumnos:")
+        for aula in self.aulas:
+            print(f'Mombre: {aula.nombre()}, Capacidad: {aula.capacidad()}')
+
+    def obtener_alumnos(self, nombre_aula):
+        for aula in self.aulas:
+            if aula.nombre == nombre_aula:
+                aula.listar_alumnos()
+                break
+    
+    def obtener_alumno(self, nombre_alumno):
+        for aula in self.aulas:
+            alumno = aula.buscar_alumno(nombre_alumno)
+            if alumno != None:
+                print(alumno)
+                return True
+        print(f'Alumno {nombre_alumno} no encontrado')
+        return False
+
+    def listar_alumnos_mayores_edad(self):
+        count = 0
+        for aula in self.aulas:
+            for alumno in aula.alumnos:
+                if alumno.es_mayor():
+                    print('Nombre: ', alumno.nombre)
+                    print('Edad: ', alumno.edad)
+                    print('Grado: ', alumno.grado)
+                    print('Aula: ', aula.nombre)
+                    count += 1
+        if count == 0:
+            print('No hay alumnos mayores de edad')
+        else:
+            print(f'Total alumnos mayores de edad: {count}')
+            
+
