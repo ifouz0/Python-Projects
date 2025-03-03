@@ -47,11 +47,12 @@ class Aula:
     profesor: str
     alumnos: list[Alumno]
 
-    def __init__(self, nombre, capacidad, profesor):
-        self.nombre = nombre
-        self.capacidad = capacidad
+    def __init__(self, nom, cap, profe):
+        self.nombre = nom
+        self.capacidad = cap
+        self.profesor = profe
         self.alumnos = []
-        self.profesor = profesor
+
 #Propiedades
     @property
     def nombre(self) -> str:
@@ -62,6 +63,9 @@ class Aula:
     @property
     def profesor(self) -> str:
         return self._profesor
+    @property
+    def alumnos(self) -> list[Alumno]:
+        return self._alumnos
 
 #Metodos
 
@@ -103,6 +107,16 @@ class Aula:
     
     def ocupacion(self):
         return len(self.alumnos) / self.capacidad * 100
+    
+    def calificar_alumno(self, nombre, grado):
+        alumno = self.buscar_alumno(nombre)
+        if alumno != None:
+            alumno.calificar(grado)
+            print(f'Alumno {nombre} calificado correctamente')
+            return True
+        else:
+            print(f'Alumno {nombre} no encontrado')
+            return False
 
     def __str__(self):
         return f'Aula: {self.numero}, Capacidad: {self.capacidad}, Alumnos: {len(self.alumnos)}'
@@ -169,7 +183,7 @@ class Escuela:
     def listar_alumnos_mayores_edad(self):
         count = 0
         for aula in self.aulas:
-            for alumno in aula.alumnos:
+            for alumno in aula.alumnos():
                 if alumno.es_mayor():
                     print('Nombre: ', alumno.nombre)
                     print('Edad: ', alumno.edad)
@@ -179,6 +193,32 @@ class Escuela:
         if count == 0:
             print('No hay alumnos mayores de edad')
         else:
+            print('')
             print(f'Total alumnos mayores de edad: {count}')
+
+    def listar_alumnos_aprobados(self):
+        count = 0
+        for aula in self.aulas():
+            for alumno in aula.alumnos():
+                if alumno.aprobo():
+                    print('Nombre: ', alumno.nombre)
+                    print('Edad: ', alumno.edad)
+                    print('Grado: ', alumno.grado)
+                    print('Aula: ', aula.nombre)
+                    count += 1
+        if count == 0:
+            print('No hay alumnos aprobados')
+        else:
+            print('')
+            print(f'Total alumnos aprobados: {count}')
+    
+    def existen_aulas(self):
+        return len(self.aulas) > 0
+    
+    def existen_alumnos(self):
+        for aula in self.aulas:
+            if  aula.num_alumnos() > 0:
+                return True
+        return False
             
 
