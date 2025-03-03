@@ -4,23 +4,11 @@ class Alumno:
     edad: int
     calificacion: float
 
-    def __init__(self, nombre, edad):
+    def __init__(self, nombre, edad, grado=None):
         self.nombre = nombre
         self.edad = edad
+        self.grado = grado
         
- #Propiedades
-
-    @property
-    def nombre(self) -> str:
-        return self._nombre
-    
-    @property
-    def edad(self) -> int:
-        return self._edad
-    
-    @property
-    def calificacion(self) -> float:
-        return self._calificacion
     
 #Metodos
 
@@ -45,27 +33,13 @@ class Aula:
     nombre: str
     capacidad: int
     profesor: str
-    alumnos: list[Alumno]
+    alumnos: list
 
     def __init__(self, nom, cap, profe):
         self.nombre = nom
         self.capacidad = cap
         self.profesor = profe
         self.alumnos = []
-
-#Propiedades
-    @property
-    def nombre(self) -> str:
-        return self._nombre
-    @property
-    def capacidad(self) -> int:
-        return self._capacidad
-    @property
-    def profesor(self) -> str:
-        return self._profesor
-    @property
-    def alumnos(self) -> list[Alumno]:
-        return self._alumnos
 
 #Metodos
 
@@ -163,7 +137,7 @@ class Escuela:
         print(f'Aulas: {len(self.aulas)}')
         print(" Nombre de las aulas y capacidad de alumnos:")
         for aula in self.aulas:
-            print(f'Mombre: {aula.nombre()}, Capacidad: {aula.capacidad()}')
+            print(f'Mombre: {aula.nombre}, Capacidad: {aula.capacidad}')
 
     def obtener_alumnos(self, nombre_aula):
         for aula in self.aulas:
@@ -185,7 +159,7 @@ class Escuela:
         for aula in self.aulas:
             for alumno in aula.alumnos():
                 if alumno.es_mayor():
-                    print('Nombre: ', alumno.nombre)
+                    print('Calificación: ', alumno.calificacion)
                     print('Edad: ', alumno.edad)
                     print('Grado: ', alumno.grado)
                     print('Aula: ', aula.nombre)
