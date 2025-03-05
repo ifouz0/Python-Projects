@@ -167,19 +167,19 @@ class Menu:
             for aula in self.escuela.aulas:
                 if aula.ocupacion() < 100:
                     print(aula.nombre)
-            aula = input('Nombre del aula: ')
+            aula_name = input('Nombre del aula: ')
             print ('')
         else:
-            aula = nombre_aula
+            aula_name = nombre_aula
         encontrado = False
         for aula in self.escuela.aulas:
-            if aula.nombre == aula:
+            if aula.nombre == aula_name:
                 aula.agregar_alumno(Alumno(nombre, edad))
-                print(f'Alumno {nombre} creado correctamente en el aula {aula}')
+                print(f'Alumno {nombre} creado correctamente en el aula {aula_name}')
                 encontrado = True
                 return False
         if encontrado == False:
-            print(f'Aula {nombre_aula} no encontrada. Alumno no creado')
+            print(f'Aula {aula_name} no encontrada. Alumno no creado')
             return False
 
     def listar_ocupacion(self):
