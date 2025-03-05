@@ -93,7 +93,7 @@ class Aula:
             return False
 
     def __str__(self):
-        return f'Aula: {self.numero}, Capacidad: {self.capacidad}, Alumnos: {len(self.alumnos)}'
+        return f'Aula: {self.numero}, Capacidad: {str(self.capacidad)}, Alumnos: {len(self.alumnos)}'
  
 
 class Escuela:
@@ -127,7 +127,7 @@ class Escuela:
             aula.listar_aprobados()
     def listar_ocupacion(self):
         for aula in self.aulas:
-            print(f'Ocupación del aula {aula.nombre}: {aula.ocupacion()}%02')
+            print(f'Ocupación del aula {aula.nombre}: {aula.ocupacion():,.2f} %')
     
     def listar_datos_escuela(self):
         print(f'Escuela: {self.nombre}')
