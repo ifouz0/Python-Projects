@@ -93,7 +93,7 @@ class Aula:
             return False
 
     def __str__(self):
-        return f'Aula: {self.numero}, Capacidad: {str(self.capacidad)}, Alumnos: {len(self.alumnos)}'
+        return f'Aula: {self.nombre}, Capacidad: {str(self.capacidad)}, Alumnos: {len(self.alumnos)}'
  
 
 class Escuela:
