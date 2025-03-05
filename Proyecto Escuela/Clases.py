@@ -18,9 +18,6 @@ class Alumno:
     def calificar(self, grado):
         self.calificacion = round(self.calificacion, 2)
 
-
-
-
     def es_mayor(self):
         return self.edad >= 18
     
